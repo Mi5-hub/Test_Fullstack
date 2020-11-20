@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="jquery.dataTables.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    
+    <script src="angular-datatables.min.js"></script>
+    
+    <script src="bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="dataTables.bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="dataTables.css">
+    <link rel="stylesheet" href="site-examples.css">
+    <link rel="stylesheet" href="bootstrap.css">
+
+    <script type="text/javascript" class="init">
+	
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+        
+    </script>
+        <style>._3emE9--dark-theme .-S-tR--ff-downloader{background:rgba(30,30,30,.93);border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#fff}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{background:#3d4b52}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#131415}._3emE9--dark-theme .-S-tR--ff-downloader ._10vpG--footer{background:rgba(30,30,30,.93)}._2mDEx--white-theme .-S-tR--ff-downloader{background:#fff;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#314c75}._2mDEx--white-theme .-S-tR--ff-downloader ._6_Mtt--header{font-weight:700}._2mDEx--white-theme .-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{border:0;color:rgba(0,0,0,.88)}._2mDEx--white-theme .-S-tR--ff-downloader ._10vpG--footer{background:#fff}.-S-tR--ff-downloader{display:block;overflow:hidden;position:fixed;bottom:20px;right:7.1%;width:330px;height:180px;background:rgba(30,30,30,.93);border-radius:2px;color:#fff;z-index:99999999;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);transition:.5s}.-S-tR--ff-downloader._3M7UQ--minimize{height:62px}.-S-tR--ff-downloader._3M7UQ--minimize .nxuu4--file-info,.-S-tR--ff-downloader._3M7UQ--minimize ._6_Mtt--header{display:none}.-S-tR--ff-downloader ._6_Mtt--header{padding:10px;font-size:17px;font-family:sans-serif}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{float:right;background:#f1ecec;height:20px;width:20px;text-align:center;padding:2px;margin-top:-10px;cursor:pointer}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#e2dede}.-S-tR--ff-downloader ._13XQ2--error{color:red;padding:10px;font-size:12px;line-height:19px}.-S-tR--ff-downloader ._2dFLA--container{position:relative;height:100%}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info{padding:6px 15px 0;font-family:sans-serif}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info div{margin-bottom:5px;width:100%;overflow:hidden}.-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{margin-top:21px;font-size:11px}.-S-tR--ff-downloader ._10vpG--footer{width:100%;bottom:0;position:absolute;font-weight:700}.-S-tR--ff-downloader ._10vpG--footer ._2V73d--loader{animation:n0BD1--rotation 3.5s linear forwards;position:absolute;top:-120px;left:calc(50% - 35px);border-radius:50%;border:5px solid #fff;border-top-color:#a29bfe;height:70px;width:70px;display:flex;justify-content:center;align-items:center}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar{width:100%;height:18px;background:#dfe6e9;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar ._1FVu9--progress-bar{height:100%;background:#8bc34a;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status{margin-top:10px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1XilH--state{float:left;font-size:.9em;letter-spacing:1pt;text-transform:uppercase;width:100px;height:20px;position:relative}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1jiaj--percentage{float:right}</style>
+</head>
+<body ng-app = "crudApp" ng-controller = "crudController" >
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+    </header>
+    <div class="container" ng-init = "fetchData()">
+        <br>
+            <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <h3 class="text-center">
+                Gestion des Utilisateurs
+            </h3>
+        </li>
+      </ol>
+    </nav>
+            
+            <br>
+            <div class="alert alert-success alert-dismissible" ng_show = "success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{successMessage}}
+            </div>
+            
+            <div align = "right">
+                <button class="btn btn-success" type="button" name="add_button" ng-click = "addData()">
+                    Ajout/Modif
+                </button>
+            </div>
+            <br>
+            <div class="table-responsive" style="overflow-x: unset;">
+                <table datatable = "ng" dt-options = "vm-dtOptions"
+                class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>nom</th>
+                            <th>prénom</th>
+                            <th>email</th>
+                            <th>date_creation</th>
+                            <th>date_modification</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = " name in namesData">
+                            <td>{{name.nom}}</td>
+                            <td>{{name.prénom}}</td>
+                            <td>{{name.email}}</td>
+                            <td>{{name.date_creation}}</td>
+                            <td>{{name.date_modification}}</td>
+                            <td>
+                                <button class="btn btn-warning btn-xs" type="button" ng-click = "fetchSingleData(name.id)">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-xs" type="button" ng-click = "deleteData(name.id)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <div class="modal fade" tabindex="-" role="dialog" id="crudmodal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form  method="post" ng-submit = "submitForm()">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true" >&times;
+                            </span>
+                        </button>
+                        <h4 class="modal-title">{{modalTitle}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger alert-dismissible" ng-show = "error">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{errorMessage}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Entrer votre nom</label>
+                        <input type="text" class="form-control" name="nom" ng-model = "nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Entrer votre prénom</label>
+                        <input type="text" class="form-control" name="prénom" ng-model = "prénom">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Entrer votre Adresse email</label>
+                        <input type="text" class="form-control" name="email" ng-model = "email">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Date creation</label>
+                        <input type="datetime-local" class="form-control" name="date_creation" ng-model = "date_creation">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Date modification</label>
+                        <input type="datetime-local" class="form-control" name="date_modification" ng-model = "date_modification">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="hidden_id" value="hidden_id">
+                        <input type="submit" name="submit" id="submit" class="btn btn-info" value="{{}}submit_button">
+                        <button type="button " class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var app = angular.module('crudApp', ['datatables']);
+        app.controller('crudController', function($scope , $http){
+            $scope.then = false;
+            $scope.error = false;
+            $scope.fetchData = function(){
+                $http.get('fetch_data.php').then(function(data){
+                    $scope.namesData = data;
+                });
+            };
+            $scope.openModal = function(){
+                var modal_popup = angular.element('#crudmodal');
+                modal_popup.modal('show');
+            };
+            $scope.closeModal = function(){
+                var modal_popup = angular.element('#crudmodal');
+                modal_popup.modal('hide');
+            };
+            $scope.addData = function(){
+                $scope.modalTitle = 'Add Data';
+                $scope.submit_button = 'Insert';
+                $scope.openModal();
+            };
+            $scope.submitForm = function(){
+                $http({
+                    method: "POST",
+                    url: "insert.php",
+                    data:{ 'nom' : $scope.nom,
+                    'prénom' : $scope.prénom,
+                    'email' : $scope.email,
+                    'date_creation' : $scope.date_creation,
+                    'date_modification' : $scope.date_modification,
+                    'action' : $scope.submit_button,
+                    'id' : $scope.hidden_id,
+                    }.then(function(data){
+                        if (data.error != ''){
+                            $scope.then = false;
+                            $scope.error = true;
+                            $scope.errorMessage = data.error;
+                        } else {
+                            $scope.then = true;
+                            $scope.error = false;
+                            $scope.thenMessage = data.message;
+                            $scope.form_data = {};
+                            $scope.closeModal();
+                            $scope.fetchData();
+                        }
+                    }),
+                });
+            };
+            $scope.fetchSingleData = function(id){
+                $http({
+                    method : "POST",
+                    url : "insert.php",
+                    data : { 'id': id , 'action': 'fetch_single_data' }
+                }).then(function(data){
+                    $scope.nom = data.nom;
+                    $scope.prénom = data.prénom;
+                    $scope.email = data.email;
+                    $scope.date_creation = data.date_modification;
+                    $scope.hidden_id = id;
+                    $scope.modalTitle = 'Edit Data';
+                    $scope.submit_button = 'Edit';
+                    $scope.openModal();
+                });
+            };
+            $scope.deleteData = function(id){
+                if (confirm("Vous voulez vraiment supprimer ce donné?")) {
+                    $http({
+                        method : "POST",
+                        url : "insert.php",
+                        data : { 'id': id , 'action': 'Delete'}
+                    }).then(function (data) {
+                        $scope.then  = true;
+                        $scope.error = false;
+                        $scope.thenMessage = data.message;
+                        $scope.fetchData();
+                    });
+                }
+            };
+        });
+    
+    </script>
+    
+
+</body>
+</html>
+
